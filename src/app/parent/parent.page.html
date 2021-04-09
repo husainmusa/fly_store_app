@@ -1,0 +1,53 @@
+<!-- 
+   Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : ionic 5 groceryee app
+  Created : 10-Sep-2020
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2020-present initappz.
+ -->
+ <ion-header>
+  <ion-toolbar color="primary">
+    <ion-title> {{util.getString('Select Parent')}} </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" color="light" name="close-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [placeholder]="util.getString('Search')" mode="ios" inputmode="text" type="text"
+    (ionChange)="onSearchChange($event)" [debounce]="250" animated></ion-searchbar>
+  <h2 class="ion-text-center" *ngIf="!dummy?.length && !parent?.length"> {{util.getString('No Product found')}} </h2>
+  <ion-item *ngFor="let item of dummy">
+    <ion-avatar slot="start">
+      <ion-skeleton-text animated></ion-skeleton-text>
+    </ion-avatar>
+    <ion-label>
+      <h3>
+        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+      </h3>
+    </ion-label>
+  </ion-item>
+
+  <ion-list>
+    <ion-item>
+      <!-- <ion-avatar slot="start">
+        <img [src]="api.mediaURL + item.cover" alt="">
+      </ion-avatar> -->
+      <ion-label>All Products</ion-label>
+      <ion-select multiple={true} [(ngModel)]="selectedItems">
+        <ion-select-option *ngFor="let item of parent" [value]="item.id" >{{item.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="selectedItems">
+    <ion-fab-button (click)="selected()">
+      <ion-icon name="checkmark-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

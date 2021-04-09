@@ -1,0 +1,10 @@
+{
+  "name": "admin",
+  "integrations": {
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
+  },
+  "type": "angular"
+}
